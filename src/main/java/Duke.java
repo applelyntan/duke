@@ -17,8 +17,8 @@ public class Duke {
                     number++;
                 }
             } else {
-                textList.add(command);
                 System.out.println("added: " + command);
+                textList.add(command);
             }
             command = scanner.nextLine();
         }
