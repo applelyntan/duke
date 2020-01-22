@@ -12,7 +12,7 @@ public class Task {
         this.isDone = false;
     }
 
-    public void doneTask() {
+    public void markAsDone() {
         this.isDone = true;
     }
 

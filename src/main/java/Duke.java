@@ -20,7 +20,7 @@ public class Duke {
             } else if (command.contains("done")) {
                 int position = command.indexOf(" ");
                 int rank = Integer.valueOf(command.substring(position+1));
-                taskList.get(rank-1).doneTask();
+                taskList.get(rank-1).markAsDone();
                 System.out.println("Nice! I've marked this task as done:\n" +
                         "[" + taskList.get(rank-1).getStatusIcon() + "] " +
                         taskList.get(rank-1).description);
