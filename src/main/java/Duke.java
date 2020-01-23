@@ -34,6 +34,23 @@ public class Duke {
                 System.out.println("Nice! I've marked this task as done:\n" +
                         "[" + taskList.get(rank-1).getStatusIcon() + "] " +
                         taskList.get(rank-1).description);
+            } else if (command.contains("delete")) {
+                int position = command.indexOf(" ");
+                int rank = Integer.parseInt(command.substring(position+1));
+                String type = "";
+                if (taskList.get(rank-1) instanceof Todo) {
+                    type = "T";
+                }
+                if (taskList.get(rank-1) instanceof Deadline) {
+                    type = "D";
+                }
+                if (taskList.get(rank-1) instanceof Event) {
+                    type = "E";
+                }
+                System.out.println("Noted. I've removed this task:\n" +
+                        String.format("[%s][%s] %s", type, taskList.get(rank-1).getStatusIcon(), taskList.get(rank-1).description));
+                taskList.remove(rank-1);
+                System.out.println("Now you have " + taskList.size() + " tasks in the list.");
             } else if (command.contains("todo")) {
                 if (command.equals("todo")) {
                     DukeException dukeException = new DukeException("OOPS!!! The description of a todo cannot be empty");
