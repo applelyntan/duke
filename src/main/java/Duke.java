@@ -35,27 +35,45 @@ public class Duke {
                         "[" + taskList.get(rank-1).getStatusIcon() + "] " +
                         taskList.get(rank-1).description);
             } else if (command.contains("todo")) {
-                Todo todo = new Todo(command.substring(command.indexOf(" ")+1));
-                System.out.println(todo + String.format("[%s][%s] %s", "T",
-                        todo.getStatusIcon(), todo.description));
-                taskList.add(todo);
-                System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                if (command.equals("todo")) {
+                    DukeException dukeException = new DukeException("OOPS!!! The description of a todo cannot be empty");
+                    System.out.println(dukeException);
+                } else {
+                    Todo todo = new Todo(command.substring(command.indexOf(" ") + 1));
+                    System.out.println(todo + String.format("[%s][%s] %s", "T",
+                            todo.getStatusIcon(), todo.description));
+                    taskList.add(todo);
+                    System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                }
             } else if (command.contains("deadline")) {
-                String task = command.substring(command.indexOf(" ")+1, command.indexOf("/"));
-                task = task + "(by: " + command.substring(command.indexOf("/by") + 4) + ")";
-                Deadline deadline = new Deadline(task);
-                System.out.println(deadline + String.format("[%s][%s] %s", "D",
-                        deadline.getStatusIcon(), deadline.description));
-                taskList.add(deadline);
-                System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                if (command.equals("deadline")) {
+                    DukeException dukeException = new DukeException("OOPS!!! The description of a deadline cannot be empty");
+                    System.out.println(dukeException);
+                } else {
+                    String task = command.substring(command.indexOf(" ") + 1, command.indexOf("/"));
+                    task = task + "(by: " + command.substring(command.indexOf("/by") + 4) + ")";
+                    Deadline deadline = new Deadline(task);
+                    System.out.println(deadline + String.format("[%s][%s] %s", "D",
+                            deadline.getStatusIcon(), deadline.description));
+                    taskList.add(deadline);
+                    System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                }
             } else if (command.contains("event")) {
-                String task = command.substring(command.indexOf(" ")+1, command.indexOf("/"));
-                task = task + "(at: " + command.substring(command.indexOf("/at") + 4) + ")";
-                Event event = new Event(task);
-                System.out.println(event + String.format("[%s][%s] %s", "E",
-                        event.getStatusIcon(), event.description));
-                taskList.add(event);
-                System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                if (command.equals("event")) {
+                    DukeException dukeException = new DukeException("OOPS!!! The description of an event cannot be empty");
+                    System.out.println(dukeException);
+                } else {
+                    String task = command.substring(command.indexOf(" ") + 1, command.indexOf("/"));
+                    task = task + "(at: " + command.substring(command.indexOf("/at") + 4) + ")";
+                    Event event = new Event(task);
+                    System.out.println(event + String.format("[%s][%s] %s", "E",
+                            event.getStatusIcon(), event.description));
+                    taskList.add(event);
+                    System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                }
+            } else {
+                DukeException dukeException = new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                System.out.println(dukeException);
             }
             command = scanner.nextLine();
         }
